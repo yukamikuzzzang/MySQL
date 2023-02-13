@@ -1,0 +1,18 @@
+IFNULL()
+칼럼이나 표현식의 값이 NULL인지 비교 후 NULL이면 다른 값으로 대체.
+
+총 두개의 인자를 전달.
+1. NULL인지 아닌지 비교하려는 칼럼이나 표현식
+2. 첫 인자가 NULL이 아니면 첫 번째 인자의 값을 반환
+
+ISNULL() 함수는 이름 그대로 인자를 표현식이나 칼럼의 값이 NULL이 아닌지 비교하는 함수.
+반환되는 값, 인자의 표현식이 NULL이면 TRUE(1), 아니면 FALSE(0)를 반환.
+
+mysql> SELECT IFNULL(NULL, 1);
+
+mysql> SELECT IFNULL(0, 1);
+
+mysql> SELECT ISNULL(0);
+
+mysql> SELECT ISNULL(1/0);
+mysql> SELECT 1/0;
