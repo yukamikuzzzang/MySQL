@@ -1,0 +1,13 @@
+나누기, /
+몫, DIV
+나머지, MOD( , ) / %
+
+나누기 연산자 "/" 사용.
+나눈 몫의 정수 부분만 가져오려면 DIV 연산자 사용.
+나눈 결과 몫이 아닌 나머지를 가져오는 연산자로는 "%" 또는 MOD 연산자(함수) 사용.
+
+mysql> SELECT 29 / 9;
+mysql> SELECT 29 DIV 9;
+mysql> SELECT MOD(29, 9);
+mysql> SELECT 29 % 9;
+

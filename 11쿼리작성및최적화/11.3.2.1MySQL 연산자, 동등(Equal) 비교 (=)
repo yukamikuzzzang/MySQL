@@ -1,0 +1,15 @@
+Equal, = / <=>
+
+동등 비교
+다른 DBMS와 동일하게 "=" 사용.
+MySQL은 "<=>" 연산자도 제공.
+"<=>"는 "="와 같으나 부가적으로 NULL값 비교까지 수행한다.
+
+MySQL에선 "<=>" 이것을 NULL-safe 비교 연산자라 부른다.
+
+mysql> SELECT 1 = 1, NULL = NULL, 1 = NULL;
+mysql> SELECT 1 <=> 1, NULL <=> NULL, 1 <=> NULL;
+
+NULL은 "IS NULL" 연산자 외에 비교할 방법이 없다.
+하지만 NULL-safe 비교 연산자를 이용하면 양쪽이 NULL일 때 TRUE(1)를 반환하고 한 쪽만 NULL이면 FALSE(0)를 반환한다.
+"<=>" 연산자는 NULL을 하나의 값으로 인식해 비교하는 방법이다.

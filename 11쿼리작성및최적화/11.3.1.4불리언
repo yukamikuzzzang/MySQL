@@ -1,0 +1,26 @@
+BOOL이나 BOOLEAN이란 타입이 있으나 TINYINT 타입의 동의어일 뿐이다.
+테이블의 칼럼을 BOOL로 생성한 뒤 조회하면 칼럼의 타입이 BOOL이 아닌 TINYINT임을 알 수 있다.
+
+MySQL에선 TRUE 또는 FALSE 형태로 비교하거나 값을 저장할 수 있다
+하지만 BOOL 타입 뿐 아니라 숫자 타입의 칼럼에도 모두 적용되는 비교방법이다.
+
+mysql> CREATE TABLE tb_boolean (bool_value BOOLEAN);
+
+mysql> INSERT INTO tb_boolean VALUES (FALSE);
+mysql> SELECT * FROM tb_boolean WHERE bool_value=FALSE;
+mysql> SELECT * FROM tb_boolean WHERE bool_value=TRUE;
+
+실제 조회하면 TRUE, FALSE는 0 또는 1로 조회된다.
+C/C++ 처럼 MySQL은 TRUE, FALSE같은 불리언 값을 정수로 매핑하여 사용하는 것이다.
+
+FALSE는 동일하게 0이나 TRUE는 C/C++과 달리 1만 의미하는 것에 주의하자.
+그래서 숫자 값이 저장된 칼럼을 TRUE, FALSE로 조회하면 0이나 1 외에는 조회되지 않는다.
+
+mysql> CREATE TABLE tb_boolean (bool_value BOOLEAN);
+mysql> INSERT INTO tb_boolean VALUES (FALSE), (TRUE), (2), (3), (4), (5);
+
+mysql> SELECT * FROM tb_boolean WHERE bool_value IN (FALSE, TRUE);
+
+모든 숫자 값이 TRUE, FALSE 라는 두 개의 불리언 값으로 매핑되지 않음은 혼란스럽고 애플리케이션 버그로 연결됐을 가능성이 크다.
+불리언 타입을 꼭 사용하고자 한다면 ENUM 타입으로 관리하는 것이 더 명확하고 실수할 가능성도 줄일 수 있다.
+

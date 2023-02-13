@@ -1,0 +1,38 @@
+SQL 표준에서 문자열을 항상 홑따옴표(')을 사용해 표시.
+MySQL에선 쌍따옴표를 사용해 문자열을 표기할 수도 있다.
+
+SELECT * FROM departments WHERE dept_no = 'd001';
+SELECT * FROM departments WHERE dept_no = "d001";
+
+SQL 표준에선 문자열 값에 홑따옴표가 포함돼 있을 때 홑따옴표를 두 번 연속해 입력한다.
+MySQL에선 쌍따옴표와 홑따옴표를 혼합해 이 문제를 피한다.
+쌍따옴표를 두 번 연속 입력하여 사용할 수도 있다.
+(3,4는 MySQL에서만 지원하는 방식이다.)
+
+SELECT * FROM departments WHERE dept_no='d''001';
+SELECT * FROM departments WHERE dept_no='d"001';
+SELECT * FROM departments WHERE dept_no="d'001";    (only use on MySQL)
+SELECT * FROM departments WHERE dept_no="d""001";   (only use on MySQL)
+
+SQL에서 사용되는 식별자(테이블명, 칼럼명 등)가 충돌할 때
+오라클, PostgreSQL에선 쌍따옴표, 대괄호로 감싸 충돌을 피한다.
+MySQL에선 역따옴표(`)를 감싸 사용하면 예약어와의 충돌을 피할 수 있다.
+
+CREATE TABLE tab_test(`table` VARCAHR(20) NOT NULL, ...);
+SELECT 'column' FROM tab_test;
+
+MySQL 서버의 sql_mode 시스템 변숫값에 ANSI_QUOTES 설정 시 쌍따옴표는 문자열 리터럴 표기에 사용할 수 없다.
+또 테이블명, 칼럼명 충돌을 피하려면 역따옴표가 아닌 쌍따옴표를 사용해야한다.
+
+SELECT * FROM departments WHERE dept_no='d''001';
+SELECT * FROM departments WHERE dept_no='d"001';
+
+CREATE TABLE tab_test ("table" VARCHAR(20) NOT NULL, ...);
+SELECT "column" FROM tab_test;
+
+이 외에 MySQL 메뉴얼엔 sql_mode 시스템 변수가 상당히 많다.
+전체적으로 MySQL 서버의 고유한 방법은 배제하고, SQL 표준 표기법만 사용할 수 있도록 강제하려면
+sql_mode에 "ANSI"를 설정하면 된다. 초기에 적용하는 것을 권고하며 운영 중인 에플리케이션에서 sql_mode를 변경하는 것은 상당히 위험하다.
+
+
+

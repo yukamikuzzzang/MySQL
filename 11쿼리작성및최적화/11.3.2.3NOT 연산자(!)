@@ -1,0 +1,12 @@
+NOT, !
+
+TRUE, FALSE 연산의 결과를 반대로(부정) 만드는 연산자로 "NOT" 사용.
+C/C++처럼 '!'도 사용 가능.
+
+불리언 뿐 아니라 숫자, 문자열 표현식에서도 사용가능하나 부정의 결괏값을 정확히 예측할 수 없다면 사용을 자제하는 것이 좋다.
+
+mysql> SELECT ! 1;
+mysql> SELECT !FALSE;
+mysql> SELECT NOT 1;
+mysql> SELECT NOT 0;
+mysql> SELECT NOT (1=1);

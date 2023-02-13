@@ -1,0 +1,13 @@
+다른 DBMS에서 날짜 타입을 비교하거나 INSERT하려면 DATE 타입으로 변환하는 코드가 필요.
+MySQL에선 정해진 형태의 날짜 포맷으로 표기시 서버가 자동으로 DATE나 DATETIME으로 값을 변환한다.
+STR_TO_DATE()같은 함수가 필요없다.
+
+SELECT * FROM dept_emp WHERE from_date='2011-04-29';
+SELECT * FROM DEPT_EMP WHERE from_date=STR_TO_DATE('2011-04-29','%Y-%m-%d');
+
+1번 쿼리와 같이 날짜 타입의 칼럼과 문자열 값을 비교하는 경우 MySQL 서버는 문자열 값을 DATE 타입으로 변환해 비교한다.
+2번 쿼리는 SQL에서 문자열을 date 타입으로 강제 변환하여 비교한다.
+이 두 쿼리의 차이점은 없다.
+
+1번과 같이 비교한다고 from_date 칼럼의 값을 문자열로 변환해서 비교하진 않는다.
+from_date 칼럼으로 생성된 인덱스를 이용하는 데에도 문제가 되지 않는다.

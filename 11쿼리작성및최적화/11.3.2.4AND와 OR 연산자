@@ -1,0 +1,25 @@
+AND, &&
+OR, ||
+
+DBMS에선 불리언 표현식의 결과를 결합하기 위해 AND나 OR을 사용한다.
+MySQL에선 AND, OR 뿐 아니라 "&&" (AND), "||" (OR)의 사용도 허용한다.
+
+오라클에선 "||"를 문자열을 결합하는 연산자로 사용한다.
+오라클에서 운영하는 애플리케이션을 MySQL로 이관하거나 문자열 결합 연산에 "||"을 사용하려 할 때엔
+sql_mode 시스템 변숫값에 PIPES_AS_CONCAT을 설정하면 된다.
+
+이것이 활성화되면 불리언 표현식을 결합할 때 "&&"만 사용가능하다.
+SQL 가독성을 높이기 위해 다른 용도로 사용될 수 있는 "&&", "||" 연산자의 사용은 자제하는 것이 좋다.
+
+mysql> SET sql_mode='PIPES_AS_CONCAT';
+mysql> SELECT 'abc' || 'def' AS concated_string;
+
+
+
+AND와 OR 연산자가 동시에 사용될 떄 어떤 연산자가 우선순위를 가질지는 중요한 문제다.
+
+mysql> SELECT TRUE OR FALSE AND FALSE;
+mysql> SELECT TRUE OR (FALSE AND FALSE);
+mysql> SELECT (TRUE OR FALSE) AND FALSE;
+
+AND를 먼저 수행 후 OR를 수행한다는 것을 확인할 수 있다.

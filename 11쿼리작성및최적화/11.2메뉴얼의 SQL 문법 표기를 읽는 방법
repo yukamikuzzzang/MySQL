@@ -1,0 +1,28 @@
+MySQL 메뉴얼에 명시된 SQL 문법은 사용할 수 있는 모든 키워드나 기능을 하나의 문장에 다 표기했다.
+한 눈에 이해하기 어렵지만 해당 버전에 맞는 SQL 문법을 참조하기에는 메뉴얼 만큼 정확한 자료가 없다.
+
+INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]
+    [INTO] <i>tbl_name</i>
+    [PARTITION (<i>partition_name</i> [, <i>partition_name</i>] ... )]
+    [(<i>col_name</i> [, <i>col_name</i>] ...)]
+    {VALUES | VALUE} (<i>value_list</i>) [, (<i>value_list</i>)] ...
+    [ON DUPLICATE KEY UPDATE <i>assignment_list</i>]
+
+<i>value</i> : {<i>expr</i> | DEFAULT}
+
+<i>value_list</i>: <i>value</i> [, <i>value</i>] ...
+
+<i>assignment</i>: <i>col_name</i> = <i>value</i>
+
+<i>assignment_list</i>: <i>assignment</i> [, <i>assignment</i>] ...
+
+대문자로 표현된 부분
+    키워드, 대소문자 구분 없이 사용 가능.
+이탤릭체로 표현된 부분
+    토큰(사용자가 작성), 대부분 테이블명이나 컬럼명, 표현식에 사용. 해당 항목이 식별자(테이블명이나 칼럼명 등)가 아니라면 상세한 문법을 설명(value, value_list ..)
+대괄호 []
+    해당 키워드나 표현식 자체가 선택 사항임을 의미, 유무 관계없이 문법적 오류는 발생하지 않음.
+중괄호 {}
+    괄호 내 아이템 중 반드시 하나를 사용해야하는 경우.
+...
+    앞에 명시된 키워드나 표현식의 조합이 반복될 수 있음을 의미.
