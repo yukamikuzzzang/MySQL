@@ -18,7 +18,7 @@ SQL에서 사용되는 식별자(테이블명, 칼럼명 등)가 충돌할 때
 오라클, PostgreSQL에선 쌍따옴표, 대괄호로 감싸 충돌을 피한다.
 MySQL에선 역따옴표(`)를 감싸 사용하면 예약어와의 충돌을 피할 수 있다.
 
-CREATE TABLE tab_test(`table` VARCAHR(20) NOT NULL, ...);
+CREATE TABLE tab_test(`table` VARCHAR(20) NOT NULL, ...);
 SELECT 'column' FROM tab_test;
 
 MySQL 서버의 sql_mode 시스템 변숫값에 ANSI_QUOTES 설정 시 쌍따옴표는 문자열 리터럴 표기에 사용할 수 없다.
